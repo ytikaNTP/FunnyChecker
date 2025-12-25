@@ -1,1 +1,2 @@
-# FunnyChecker
+# FunnyChecker Configuration Server
+by ytika
