@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перенаправление...</title>
+</head>
+<body>
+    <script>
+        function getPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (userAgent.indexOf("Linux") !== -1 || 
+                userAgent.indexOf("X11") !== -1) {
+                return "linux";
+            }
+            
+            if (userAgent.indexOf("Win") !== -1 || 
+                userAgent.indexOf("Windows") !== -1) {
+                return "windows";
+            }
+            
+            return "default";
+        }
+        
+        const platformLinks = {
+            linux: "https://linux-example.com",     // Ссылка для Linux
+            windows: "https://windows-example.com", // Ссылка для Windows
+            default: "https://default-example.com"  // Ссылка по умолчанию
+        };
+    
+        const platform = getPlatform();
+        const targetUrl = platformLinks[platform] || platformLinks.default;
+        
+        console.log(`Платформа: ${platform}, Перенаправление на: ${targetUrl}`);
+        
+        window.location.href = targetUrl;
+        
+        const meta = document.createElement('meta');
+        meta.httpEquiv = "refresh";
+        meta.content = `0; url=${targetUrl}`;
+        document.head.appendChild(meta);
+        
+        document.body.innerHTML = `
+            <p>Определена платформа: <strong>${platform}</strong></p>
+            <p>Перенаправление на: ${targetUrl}</p>
+            <p>Если перенаправление не произошло автоматически, нажмите <a href="${targetUrl}">здесь</a>.</p>
+        `;
+    </script>
+</body>
+</html>
