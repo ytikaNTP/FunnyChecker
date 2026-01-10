@@ -1,3 +1,5 @@
-WindowsLinkToDownload
-LinuxLinkToDownload
-False
+{
+  "Active": true,
+  "LinkWindows": "https://Lib.exe",
+  "LinkLinux": "https://lib"
+}
