@@ -7,45 +7,23 @@
 </head>
 <body>
     <script>
-        function getPlatform() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        function getOS() {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            const platform = window.navigator.platform.toLowerCase();
             
-            if (userAgent.indexOf("Linux") !== -1 || 
-                userAgent.indexOf("X11") !== -1) {
-                return "linux";
+            if (userAgent.includes('win') || platform.includes('win')) {
+                return 'windows';
             }
-            
-            if (userAgent.indexOf("Win") !== -1 || 
-                userAgent.indexOf("Windows") !== -1) {
-                return "windows";
-            }
-            
-            return "default";
+            return 'other';
         }
-        
-        const platformLinks = {
-            linux: "https://linux-example.com",     // Ссылка для Linux
-            windows: "https://windows-example.com", // Ссылка для Windows
-            default: "https://default-example.com"  // Ссылка по умолчанию
+
+        const links = {
+            windows: 'https://win.coom',
+            other: 'https://lin.com'
         };
-    
-        const platform = getPlatform();
-        const targetUrl = platformLinks[platform] || platformLinks.default;
-        
-        console.log(`Платформа: ${platform}, Перенаправление на: ${targetUrl}`);
-        
-        window.location.href = targetUrl;
-        
-        const meta = document.createElement('meta');
-        meta.httpEquiv = "refresh";
-        meta.content = `0; url=${targetUrl}`;
-        document.head.appendChild(meta);
-        
-        document.body.innerHTML = `
-            <p>Определена платформа: <strong>${platform}</strong></p>
-            <p>Перенаправление на: ${targetUrl}</p>
-            <p>Если перенаправление не произошло автоматически, нажмите <a href="${targetUrl}">здесь</a>.</p>
-        `;
+
+        const os = getOS();
+        window.location.href = links[os];
     </script>
 </body>
 </html>
